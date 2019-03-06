@@ -4,13 +4,21 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Plony {
+
+    //TODO: INFO 2. Mapowanie relacji pomiędzy encjami
+    //------- ZALEŻNOŚCI ------//
+    @OneToMany(mappedBy = "plony")
+    private List<LacznyPlon> zasianePlony;
+
+    //------- ZMIENNE ------//
 
     @Id
     @GeneratedValue

@@ -1,12 +1,17 @@
 package pl.retrix.smartfarm.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 public class LacznyPlon {
+
+    //------- ZALEŻNOŚCI ------//
+    @ManyToOne
+    private Plony plony;
+
+    //------- ZMIENNE ------//
 
     @Id
     @GeneratedValue
@@ -17,12 +22,6 @@ public class LacznyPlon {
 
     @NotNull
     private Float lacznaPow;
-
-    @NotNull
-    private String typNawozu;
-
-    @NotNull
-    private Float iloscNawozu;
 
     @NotNull
     private Integer typUprawy;
@@ -46,22 +45,6 @@ public class LacznyPlon {
 
     public void setLacznaPow(Float lacznaPow) {
         this.lacznaPow = lacznaPow;
-    }
-
-    public String getTypNawozu() {
-        return typNawozu;
-    }
-
-    public void setTypNawozu(String typNawozu) {
-        this.typNawozu = typNawozu;
-    }
-
-    public Float getIloscNawozu() {
-        return iloscNawozu;
-    }
-
-    public void setIloscNawozu(Float iloscNawozu) {
-        this.iloscNawozu = iloscNawozu;
     }
 
     public Integer getTypUprawy() {
