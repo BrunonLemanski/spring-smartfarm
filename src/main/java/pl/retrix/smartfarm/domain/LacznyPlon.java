@@ -62,4 +62,12 @@ public class LacznyPlon {
     public void setZebranyPlon(Float zebranyPlon) {
         this.zebranyPlon = zebranyPlon;
     }
+
+    public Plony getPlony() {
+        return plony;
+    }
+
+    public void setPlony(Plony plony) {
+        this.plony = plony;
+    }
 }

@@ -5,14 +5,21 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+
+/**
+ * Klasa odpowiadająca za encję NAWOZENIE. Ma za zadanie przechowywać
+ * informację na temat nawożenia każdej z upraw.
+ */
 
 @Entity
 public class Nawozenie {
 
     //------- ZALEŻNOŚCI ------//
-    private
+    @ManyToOne
+    private Plony plony;
 
     //------- ZMIENNE ------//
 
@@ -63,5 +70,13 @@ public class Nawozenie {
 
     public void setDataNawoenia(Date dataNawoenia) {
         this.dataNawoenia = dataNawoenia;
+    }
+
+    public Plony getPlony() {
+        return plony;
+    }
+
+    public void setPlony(Plony plony) {
+        this.plony = plony;
     }
 }

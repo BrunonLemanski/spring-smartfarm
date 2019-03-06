@@ -2,21 +2,26 @@ package pl.retrix.smartfarm.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
+
+/**
+ * Klasa odpowiadająca za encję PLONY. Zawiera relację z
+ * encją LacznyPlon oraz Nawozenie, które są podrzedne.
+ */
 
 @Entity
 public class Plony {
 
     //TODO: INFO 2. Mapowanie relacji pomiędzy encjami
     //------- ZALEŻNOŚCI ------//
-    @OneToMany(mappedBy = "plony")
+    @OneToOne(mappedBy = "plony")
     private List<LacznyPlon> zasianePlony;
+
+    @OneToMany(mappedBy = "nawozenie")
+    private List<Nawozenie> nawozPlon; //TODO: Rozwiązać problem z encjami.
 
     //------- ZMIENNE ------//
 
@@ -86,10 +91,19 @@ public class Plony {
         this.dataZbioru = dataZbioru;
     }
 
-    //TODO: Utworzyć encję 'ŁącznyPlon'. Będzie potrzebne do wyświetlania i zarządzania danymi w finalnej wersji app
-    //LacznyPlon
-    //private Integer idPola;
-    //private Float lacznaPow;
-    //private String nawozenie;
-    //private Float zebranyPlon;
+    public List<LacznyPlon> getZasianePlony() {
+        return zasianePlony;
+    }
+
+    public void setZasianePlony(List<LacznyPlon> zasianePlony) {
+        this.zasianePlony = zasianePlony;
+    }
+
+    public List<Nawozenie> getNawozPlon() {
+        return nawozPlon;
+    }
+
+    public void setNawozPlon(List<Nawozenie> nawozPlon) {
+        this.nawozPlon = nawozPlon;
+    }
 }
