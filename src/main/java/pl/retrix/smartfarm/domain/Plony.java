@@ -17,10 +17,10 @@ public class Plony {
 
     //TODO: INFO 2. Mapowanie relacji pomiędzy encjami
     //------- ZALEŻNOŚCI ------//
-    @OneToOne(mappedBy = "plony")
-    private List<LacznyPlon> zasianePlony;
+    @ManyToOne
+    private LacznyPlon lacznyPlon;
 
-    @OneToMany(mappedBy = "nawozenie")
+    @OneToMany(mappedBy = "nawozeniePlonyPath")
     private List<Nawozenie> nawozPlon; //TODO: Rozwiązać problem z encjami.
 
     //------- ZMIENNE ------//
@@ -36,7 +36,7 @@ public class Plony {
     private Integer typ;
 
     @NotNull(message = "Podaj powierzchnię uprawy")
-    private Float powierzchnia;
+    private Double powierzchnia;
 
     @JsonFormat(pattern = "dd-mm-yyyy")
     @NotNull(message = "Podaj datę siewu")
@@ -67,11 +67,11 @@ public class Plony {
         this.typ = typ;
     }
 
-    public Float getPowierzchnia() {
+    public Double getPowierzchnia() {
         return powierzchnia;
     }
 
-    public void setPowierzchnia(Float powierzchnia) {
+    public void setPowierzchnia(Double powierzchnia) {
         this.powierzchnia = powierzchnia;
     }
 
@@ -91,19 +91,4 @@ public class Plony {
         this.dataZbioru = dataZbioru;
     }
 
-    public List<LacznyPlon> getZasianePlony() {
-        return zasianePlony;
-    }
-
-    public void setZasianePlony(List<LacznyPlon> zasianePlony) {
-        this.zasianePlony = zasianePlony;
-    }
-
-    public List<Nawozenie> getNawozPlon() {
-        return nawozPlon;
-    }
-
-    public void setNawozPlon(List<Nawozenie> nawozPlon) {
-        this.nawozPlon = nawozPlon;
-    }
 }

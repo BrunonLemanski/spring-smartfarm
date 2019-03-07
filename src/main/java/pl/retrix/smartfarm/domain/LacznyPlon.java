@@ -8,8 +8,8 @@ import java.util.List;
 public class LacznyPlon {
 
     //------- ZALEŻNOŚCI ------//
-    @ManyToOne
-    private Plony plony;
+    @OneToMany(mappedBy = "lacznyPlon")
+    private List<Plony> plonyRazem;
 
     //------- ZMIENNE ------//
 
@@ -33,6 +33,14 @@ public class LacznyPlon {
     }
 
     public LacznyPlon() {
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public void setIdPola(Integer idPola) {
@@ -63,11 +71,4 @@ public class LacznyPlon {
         this.zebranyPlon = zebranyPlon;
     }
 
-    public Plony getPlony() {
-        return plony;
-    }
-
-    public void setPlony(Plony plony) {
-        this.plony = plony;
-    }
 }

@@ -19,7 +19,7 @@ public class Nawozenie {
 
     //------- ZALEŻNOŚCI ------//
     @ManyToOne
-    private Plony plony;
+    private Plony nawozeniePlonyPath;
 
     //------- ZMIENNE ------//
 
@@ -35,7 +35,7 @@ public class Nawozenie {
 
     @NotNull
     @JsonFormat(pattern = "dd-mm-yy")
-    private Date dataNawoenia;
+    private Date dataNawozenia;
 
     public Nawozenie() {
     }
@@ -65,18 +65,11 @@ public class Nawozenie {
     }
 
     public Date getDataNawoenia() {
-        return dataNawoenia;
+        return dataNawozenia;
     }
 
-    public void setDataNawoenia(Date dataNawoenia) {
-        this.dataNawoenia = dataNawoenia;
+    public void setDataNawoenia(Date dataNawozenia) {
+        this.dataNawozenia = dataNawozenia;
     }
 
-    public Plony getPlony() {
-        return plony;
-    }
-
-    public void setPlony(Plony plony) {
-        this.plony = plony;
-    }
 }
