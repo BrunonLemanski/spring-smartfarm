@@ -11,6 +11,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 
 //Metoda odpowiadajaca za wymaganie logowania do systemu
+/*
+Notice: Postman wyrzucał błąd 401 Unauthorized 'InvalidLogiRespone' dlatego bo w .antMatchers()' brakowało '/' przed cala sciezka
+ */
 
 @Configuration
 @EnableWebSecurity
@@ -32,8 +35,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter { //TODO: Secur
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .headers().frameOptions().sameOrigin() //To enable H2 Database
                 .and().authorizeRequests()
-                .antMatchers().permitAll()
-                .antMatchers("api/users/**").permitAll()
+                .antMatchers(
+                        "/",
+                        "/favicon.ico",
+                        "/**/*.png",
+                        "/**/*.gif",
+                        "/**/*.svg",
+                        "/**/*.jpg",
+                        "/**/*.html",
+                        "/**/*.css",
+                        "/**/*.js"
+                ).permitAll()
+                .antMatchers("/api/users/**").permitAll()
                 .anyRequest().authenticated();
     }
 }
