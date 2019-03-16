@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 //TODO: http://blog.mloza.pl/spring-boot-interakcja-z-baza-danych-czyli-spring-data-jpa/
+//TODO: Wszystko angielskie Exception zmienić na polskie
 
 @SpringBootApplication
 public class SmartfarmApplication {
