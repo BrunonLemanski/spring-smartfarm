@@ -14,6 +14,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import pl.retrix.smartfarm.services.CustomUserDetailsService;
 
 import static pl.retrix.smartfarm.domain.security.SecurityConstants.H2_URL;
@@ -41,6 +42,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter { //TODO: Secur
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    @Bean
+    public JwtAuthenticationFiler jwtAuthenticationFiler() {return new JwtAuthenticationFiler();}
 
     @Override
     protected void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
@@ -75,5 +79,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter { //TODO: Secur
                 .antMatchers(SIGN_UP_URLS).permitAll()
                 .antMatchers(H2_URL).permitAll()
                 .anyRequest().authenticated();
+
+        http.addFilterBefore(jwtAuthenticationFiler(), UsernamePasswordAuthenticationFilter.class); //It is required on JwtAuthenticationFiler.java
     }
 }
