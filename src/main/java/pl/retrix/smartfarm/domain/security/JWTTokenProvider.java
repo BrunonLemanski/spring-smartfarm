@@ -37,7 +37,7 @@ public class JWTTokenProvider {
                 .setClaims(claims)
                 .setIssuedAt(now)
                 .setExpiration(expiryDate)
-                .signWith(SignatureAlgorithm.ES512, SECRET)
+                .signWith(SignatureAlgorithm.HS512, SECRET) //Podczas logowania bląd 500, podana zla zmienna 'ES512' zamiast 'HS512'
                 .compact();
     }
 
