@@ -23,6 +23,7 @@ public class Mleko {
     private Long nrOdbioru;
 
     @JsonFormat(pattern = "dd-mm-yyyy")
+    @Column(unique = true, updatable = false)
     private Date dataOdbioru;
 
     public Mleko(){}

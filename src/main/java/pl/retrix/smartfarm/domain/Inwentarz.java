@@ -17,7 +17,7 @@ public class Inwentarz {
     private String imie;
 
     @NotNull(message = "Numer identyfikujący bydło musi zostać podany")
-    @Column(unique = true, updatable = false)
+    @Column(unique = true, updatable = false) //musi byc updatable = false, wyszukiwaniew
     private String nrId;
 
     @JsonFormat(pattern = "dd-mm-yyyy")

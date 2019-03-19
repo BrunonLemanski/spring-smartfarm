@@ -14,6 +14,7 @@ public class Maszyny {
     private Long id;
 
     @NotBlank(message = "Nazwa maszyny jest wymagana")
+    @Column(unique = true, updatable = false)
     private String nazwaMaszyny;
 
     @JsonFormat(pattern = "dd-mm-yyyy")

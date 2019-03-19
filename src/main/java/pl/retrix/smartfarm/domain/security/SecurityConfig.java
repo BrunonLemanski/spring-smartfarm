@@ -4,7 +4,6 @@ package pl.retrix.smartfarm.domain.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -17,8 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import pl.retrix.smartfarm.services.CustomUserDetailsService;
 
-import static pl.retrix.smartfarm.domain.security.SecurityConstants.H2_URL;
-import static pl.retrix.smartfarm.domain.security.SecurityConstants.SIGN_UP_URLS;
+import static pl.retrix.smartfarm.domain.security.SecurityConstants.*;
 
 //Metoda odpowiadajaca za wymaganie logowania do systemu
 /*
@@ -78,6 +76,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter { //TODO: Secur
                 ).permitAll()
                 .antMatchers(SIGN_UP_URLS).permitAll()
                 .antMatchers(H2_URL).permitAll()
+                .antMatchers(H2_CONSOLE_PATCH).permitAll()//TODO: pamietać o usunieciu tego z wyjatkow; umozliwia dostep do bazy wszystkim niezalogowanym
                 .anyRequest().authenticated();
 
         http.addFilterBefore(jwtAuthenticationFiler(), UsernamePasswordAuthenticationFilter.class); //It is required on JwtAuthenticationFiler.java

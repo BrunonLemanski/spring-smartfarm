@@ -7,7 +7,7 @@ import pl.retrix.smartfarm.domain.Inwentarz;
 @Repository
 public interface InwentarzRepository extends CrudRepository<Inwentarz, Long> {
 
-    Inwentarz findByImie(String imie);
+    Inwentarz findByNrId (String nrId);
 
     @Override
     Iterable<Inwentarz> findAll();

@@ -4,10 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.retrix.smartfarm.domain.Inwentarz;
 import pl.retrix.smartfarm.services.InwentarzService;
 import pl.retrix.smartfarm.services.MapValidationErrorService;
@@ -32,5 +29,26 @@ public class InwentarzController {
         Inwentarz inwentarz1 = inwentarzService.saveOrUpdateInwentarz(inwentarz);
 
         return new ResponseEntity<Inwentarz>(inwentarz, HttpStatus.CREATED);
+    }
+
+    //Wyszukiwanie rekordu w bazie
+    @GetMapping("/{nrId}")
+    public ResponseEntity<?> getBydloByNrId(@PathVariable String nrId){
+
+        Inwentarz inwentarz = inwentarzService.findBydloByNrId(nrId);
+
+        return new ResponseEntity<Inwentarz>(inwentarz, HttpStatus.OK);
+    }
+
+    //Wyszukiwanie wszystkich rekordow w bazie
+    @GetMapping("/all")
+    public Iterable<Inwentarz> getAllInwentarz(){return inwentarzService.findAllInwentarz();}
+
+    //Usuwanie rekordu z bazy
+    @DeleteMapping("/{nrId}")
+    public ResponseEntity<?> deleteInwentarz(@PathVariable String nrId){
+        inwentarzService.deleteInwentarzByNrId(nrId);
+
+        return new ResponseEntity<String>("Krowa o numerze kolczyka " + nrId + " została usunięta z bazy", HttpStatus.OK);
     }
 }

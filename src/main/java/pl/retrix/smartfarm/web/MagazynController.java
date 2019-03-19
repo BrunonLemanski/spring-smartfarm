@@ -31,4 +31,24 @@ public class MagazynController {
 
         return new ResponseEntity<Magazyn>(magazyn, HttpStatus.CREATED);
     }
+
+    //Wyszukiwanie rekordu w bazie
+    @GetMapping("/{nazwaTowaru}")
+    public ResponseEntity<?> findMagazynByNazwaTowaru(@PathVariable String nazwaTowaru){
+
+        Magazyn magazyn = magazynService.findByNazwaTowaru(nazwaTowaru);
+
+        return new ResponseEntity<Magazyn>(magazyn, HttpStatus.OK);
+    }
+
+    //Wyszukiwanie wszystkich rekordów w bazie
+    @GetMapping("/all")
+    public Iterable<Magazyn> getAllMagazyn(){return magazynService.findAll();}
+
+    @DeleteMapping("/{nazwaTowaru")
+    public ResponseEntity<?> deleteMagazyn(@PathVariable String nazwaTowaru){
+        magazynService.deleteMagazynByNazwa(nazwaTowaru);
+
+        return new ResponseEntity<String>("Towar o nazwie " + nazwaTowaru + " został usunięty z bazy", HttpStatus.OK);
+    }
 }

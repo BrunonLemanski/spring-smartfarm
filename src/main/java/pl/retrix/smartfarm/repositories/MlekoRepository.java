@@ -4,11 +4,12 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import pl.retrix.smartfarm.domain.Mleko;
 
+import java.util.Date;
+
 @Repository
 public interface MlekoRepository extends CrudRepository<Mleko, Long> {
 
-    Mleko findByIloscMleko(String iloscMleko);
-
+    Mleko findByDataOdbioru (Date dataOdbioru);
 
     @Override
     Iterable<Mleko> findAll();

@@ -20,4 +20,27 @@ public class MagazynService {
             throw new MagazynNazwaException("Towar '" + magazyn.getNazwaTowaru().toUpperCase() + "' istnieje już w bazie! Możesz go zaktualizować");
         }
     }
+
+    public Magazyn findByNazwaTowaru(String nazwaTowaru){
+        Magazyn magazyn = magazynRepository.findByNazwaTowaru(nazwaTowaru);
+
+        if(magazyn == null){
+            throw new MagazynNazwaException("Towar o nazwie " + nazwaTowaru + " nie istnieje");
+        }
+
+        return magazyn;
+    }
+
+    public Iterable<Magazyn> findAll(){
+        return magazynRepository.findAll();
+    }
+
+    public void deleteMagazynByNazwa(String nazwaTowaru){
+        Magazyn magazyn = magazynRepository.findByNazwaTowaru(nazwaTowaru);
+
+        if(magazyn == null){
+            throw new MagazynNazwaException("Towar o nazwie " + nazwaTowaru + " nie istnieje");
+        }
+        magazynRepository.delete(magazyn);
+    }
 }
