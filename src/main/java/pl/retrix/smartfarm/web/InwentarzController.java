@@ -49,6 +49,6 @@ public class InwentarzController {
     public ResponseEntity<?> deleteInwentarz(@PathVariable String nrId){
         inwentarzService.deleteInwentarzByNrId(nrId);
 
-        return new ResponseEntity<String>("Krowa o numerze kolczyka " + nrId + " została usunięta z bazy", HttpStatus.OK);
+        return new ResponseEntity<String>("Krowa o numerze kolczyka " + nrId + " została usunięta z bazy danych", HttpStatus.OK);
     }
 }
