@@ -22,4 +22,25 @@ public class PolaUprawneService {
             throw new PolaUprawneException("Pole '" + pole.getNazwaPola().toUpperCase() + "' istnieje już w bazie! Możesz je zaktualizować!");
         }
     }
+
+    public PolaUprawne findByNazwaPola(String nazwaPola){
+        PolaUprawne polaUprawne = polaUprawneRepository.findByNazwaPola(nazwaPola);
+
+        if(polaUprawne == null){
+            throw new PolaUprawneException("Pole o nazwie " + nazwaPola + " istnieje już w bazie danych");
+        }
+
+        return polaUprawne;
+    }
+
+    public Iterable<PolaUprawne> findAll(){return polaUprawneRepository.findAll();}
+
+    public void deletePoleByNazwaPola(String nazwaPola){
+        PolaUprawne polaUprawne = polaUprawneRepository.findByNazwaPola(nazwaPola);
+
+        if(polaUprawne == null){
+            throw new PolaUprawneException("Pole " + nazwaPola + " nie istnieje");
+        }
+        polaUprawneRepository.delete(polaUprawne);
+    }
 }

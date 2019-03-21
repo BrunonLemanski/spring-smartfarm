@@ -3,6 +3,7 @@ package pl.retrix.smartfarm.domain.finanse;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
@@ -12,6 +13,7 @@ import java.util.Date;
 public class Wydatki { //TODO: tworzona encja
 
     @Id
+    @Column(name = "wydatki_id")
     private Integer id;
 
     @NotBlank(message = "Tytul jest wymagany")
@@ -23,6 +25,17 @@ public class Wydatki { //TODO: tworzona encja
     @JsonFormat(pattern = "dd-mm-yyyy")
     @NotBlank(message = "Data jest wymagana")
     private Date dataDodania;
+
+    @Column(name = "stan_id")
+    private Integer stan_id;
+
+    public Integer getStan_id() {
+        return stan_id;
+    }
+
+    public void setStan_id(Integer stan_id) {
+        this.stan_id = stan_id;
+    }
 
     public Wydatki() {
     }

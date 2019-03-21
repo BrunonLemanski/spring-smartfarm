@@ -7,7 +7,7 @@ import pl.retrix.smartfarm.domain.Plony;
 @Repository
 public interface PlonyRepository extends CrudRepository<Plony, Long> {
 
-    Plony findByTyp(Integer typ);
+    Plony findByIdUprawy (String idUprawy);
 
     @Override
     Iterable<Plony> findAll();

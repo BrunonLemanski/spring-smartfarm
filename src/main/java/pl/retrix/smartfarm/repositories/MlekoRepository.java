@@ -11,6 +11,8 @@ public interface MlekoRepository extends CrudRepository<Mleko, Long> {
 
     Mleko findByDataOdbioru (Date dataOdbioru);
 
+    Mleko findByNrOdbioru (Integer nrOdbioru);
+
     @Override
     Iterable<Mleko> findAll();
 }

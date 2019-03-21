@@ -4,10 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.retrix.smartfarm.domain.PolaUprawne;
 import pl.retrix.smartfarm.services.MapValidationErrorService;
 import pl.retrix.smartfarm.services.PolaUprawneService;
@@ -33,5 +30,23 @@ public class PolaUprawneController {
         PolaUprawne polaUprawne1 = polaUprawneService.saveOrUpdatePola(pole);
 
         return new ResponseEntity<PolaUprawne>(pole, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{nazwaPola}")
+    private ResponseEntity<?> findPoleByNazwaPola(@PathVariable String nazwaPola){
+
+        PolaUprawne polaUprawne = polaUprawneService.findByNazwaPola(nazwaPola);
+
+        return new ResponseEntity<PolaUprawne>(polaUprawne, HttpStatus.OK);
+    }
+
+    @GetMapping("/all")
+    public Iterable<PolaUprawne> getAllPola(){return polaUprawneService.findAll();}
+
+    @DeleteMapping("/{nazwaPola}")
+    public ResponseEntity<?> deletePole(@PathVariable String nazwaPola){
+        polaUprawneService.deletePoleByNazwaPola(nazwaPola);
+
+        return new ResponseEntity<String>("Pole " + nazwaPola + " zostało usunięte z bazy", HttpStatus.OK);
     }
 }

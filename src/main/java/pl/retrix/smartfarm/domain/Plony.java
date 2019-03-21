@@ -1,6 +1,7 @@
 package pl.retrix.smartfarm.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.sun.xml.internal.ws.developer.UsesJAXBContext;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -26,8 +27,13 @@ public class Plony {
     //------- ZMIENNE ------//
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(updatable = false, unique = true)
     private Long id;
+
+    @NotNull(message = "Podaj nazwę/kod dla uprawy")
+    @Column(updatable = false, unique = true)
+    private String idUprawy;
 
     @NotNull(message = "Wskaż pole, na którym chcesz dodać plon") //TODO: pobieranie powierzchni pola i wyliczanie ile z niego zostało juz wykorzystane. W rozwijanym MENU pkt. 'Dostępne: 2,1ha'. Wykres użycia pól w zakładce Plony
     private Integer idPola;
@@ -46,6 +52,14 @@ public class Plony {
     private Date dataZbioru;
 
     public Plony() { }
+
+    public String getIdUprawy() {
+        return idUprawy;
+    }
+
+    public void setIdUprawy(String idUprawy) {
+        this.idUprawy = idUprawy;
+    }
 
     public Long getId() {
         return id;

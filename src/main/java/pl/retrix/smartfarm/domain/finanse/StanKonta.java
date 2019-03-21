@@ -1,16 +1,21 @@
 package pl.retrix.smartfarm.domain.finanse;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 
 @Entity
 public class StanKonta {//TODO: tworzona encja
 
     @Id
+    @Column(name = "stan_id")
     private Integer id;
 
     private Double stan; //wyplata + przychody - wydatki
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "stan_id", referencedColumnName = "stan_id")
+    private List<Wydatki> wydatkiList;
 
     public StanKonta() {
     }

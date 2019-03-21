@@ -24,6 +24,7 @@ public class LacznyPlon {
     private Float lacznaPow;
 
     @NotNull
+    @Column(updatable = false, unique = true)
     private Integer typUprawy;
 
     private Float zebranyPlon;

@@ -18,12 +18,19 @@ public class MlekoService {
 
     public Mleko saveOrUpdateMleko(Mleko mleko){
         try{
-            mleko.setIloscMleko(mleko.getIloscMleko());
             return mlekoRepository.save(mleko);
         }catch(Exception e){
-            throw new MlekoIloscException("Odbiór dla daty '" + mleko.getIloscMleko() + "' został dodany! Możesz go edytować!");
+            throw new MlekoDataOdbioruException("Odbiór dla daty '" + mleko.getDataOdbioru() + "' został dodany! Możesz go edytować!");
         }
     }
+    /*
+    public Mleko findMlekoByNrOdbioru(Integer nrOdbioru){
+        Mleko mleko = mlekoRepository.findByNrOdbioru(nrOdbioru);
+
+        if(mleko == null){
+            throw new MlekoDataOdbioruException("Odbiór nr " +)
+        }
+    }*/
 
     public Mleko findMlekoByDataOdbioru(Date dataOdbioru){
 

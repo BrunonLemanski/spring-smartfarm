@@ -18,8 +18,8 @@ public class Mleko {
     @Size(min = 3, max = 5, message = "Wprowadź conajmniej 100 litrów mleka i conajwyżej 99999 l")
     private String iloscMleko;
 
-    @GeneratedValue(strategy = GenerationType.AUTO)
     //TODO napisać sekwencje dla odbiorów w miesiacu tzn. 1-15 odbiorów i w kolejnym miesiącu od 1
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long nrOdbioru;
 
     @JsonFormat(pattern = "dd-mm-yyyy")
