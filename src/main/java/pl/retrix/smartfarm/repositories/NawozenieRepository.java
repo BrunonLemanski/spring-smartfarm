@@ -7,6 +7,8 @@ import pl.retrix.smartfarm.domain.Nawozenie;
 @Repository
 public interface NawozenieRepository extends CrudRepository<Nawozenie,Long> {
 
+    Nawozenie findByIdNawozenia (String idNawozenia);
+
     @Override
     Iterable<Nawozenie> findAll();
 }

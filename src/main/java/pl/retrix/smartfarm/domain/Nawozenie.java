@@ -2,10 +2,7 @@ package pl.retrix.smartfarm.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
@@ -28,16 +25,28 @@ public class Nawozenie {
     private Integer id;
 
     @NotNull
+    @Column(updatable = false, unique = true)
+    private String idNawozenia;
+
+    @NotNull
     private String typNawozu;
 
     @NotNull
     private Float iloscNawozu;
 
     @NotNull
-    @JsonFormat(pattern = "dd-mm-yy")
+    @JsonFormat(pattern = "dd-mm-yyyy")
     private Date dataNawozenia;
 
     public Nawozenie() {
+    }
+
+    public String getIdNawozenia() {
+        return idNawozenia;
+    }
+
+    public void setIdNawozenia(String idNawozenia) {
+        this.idNawozenia = idNawozenia;
     }
 
     public Integer getId() {
@@ -64,11 +73,11 @@ public class Nawozenie {
         this.iloscNawozu = iloscNawozu;
     }
 
-    public Date getDataNawoenia() {
+    public Date getDataNawozenia() {
         return dataNawozenia;
     }
 
-    public void setDataNawoenia(Date dataNawozenia) {
+    public void setDataNawozenia(Date dataNawozenia) {
         this.dataNawozenia = dataNawozenia;
     }
 
