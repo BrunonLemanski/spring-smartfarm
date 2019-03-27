@@ -2,6 +2,7 @@ package pl.retrix.smartfarm.domain.finanse;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
@@ -14,6 +15,7 @@ public class Zobowiazania {//TODO: tworzona encja
     private Integer id;
 
     @NotBlank(message = "Tytul jest wymagany")
+    @Column(updatable = false, unique = true)
     private String tytul;
 
     @NotBlank(message = "Kwota jest wymagana")

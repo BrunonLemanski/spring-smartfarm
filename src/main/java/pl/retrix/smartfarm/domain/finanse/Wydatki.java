@@ -17,6 +17,7 @@ public class Wydatki { //TODO: tworzona encja
     private Integer id;
 
     @NotBlank(message = "Tytul jest wymagany")
+    @Column(updatable = false, unique = true)
     private String tytul;
 
     @NotBlank(message = "Kwota jest wymagana")

@@ -2,6 +2,7 @@ package pl.retrix.smartfarm.domain.finanse;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
@@ -12,6 +13,10 @@ public class Wyplaty {//TODO: tworzona encja
 
     @Id
     private Integer id;
+
+    @NotBlank
+    @Column(updatable = false, unique = true)
+    private String tytul;
 
     @NotBlank(message = "Kwota jest wymagana")
     private Double kwota;
@@ -29,6 +34,14 @@ public class Wyplaty {//TODO: tworzona encja
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getTytul() {
+        return tytul;
+    }
+
+    public void setTytul(String tytul) {
+        this.tytul = tytul;
     }
 
     public Double getKwota() {

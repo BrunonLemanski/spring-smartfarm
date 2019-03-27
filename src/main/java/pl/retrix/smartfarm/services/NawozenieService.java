@@ -15,6 +15,7 @@ public class NawozenieService {
     public Nawozenie saveOrUpdateNawozenie(Nawozenie nawozenie){
         try{
             nawozenie.setIdNawozenia(nawozenie.getIdNawozenia().toUpperCase());
+            return nawozenieRepository.save(nawozenie);
         }catch (Exception e){
             throw new NawozenieIdNawozeniaException("Wpis " + nawozenie.getIdNawozenia().toUpperCase() + " juz istnieje w bazie");
         }

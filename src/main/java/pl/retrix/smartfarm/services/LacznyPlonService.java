@@ -24,7 +24,7 @@ public class LacznyPlonService {
 
     public Iterable<LacznyPlon> findAll() { return lacznyPlonRepository.findAll();}
 
-    public void deleteLacznyPlonByNazwa(Integer typUprawy){
+    public void deleteLacznyPlonByNazwa(String typUprawy){
         LacznyPlon lacznyPlon = lacznyPlonRepository.findByTypUprawy(typUprawy);
 
         if(lacznyPlon == null){

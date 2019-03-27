@@ -18,7 +18,7 @@ public class LacznyPlon {
     private Integer id;
 
     @NotNull
-    private Integer idPola;
+    private String idPola;
 
     @NotNull
     private Float lacznaPow;
@@ -29,7 +29,7 @@ public class LacznyPlon {
 
     private Float zebranyPlon;
 
-    public Integer getIdPola() {
+    public String getIdPola() {
         return idPola;
     }
 
@@ -44,7 +44,7 @@ public class LacznyPlon {
         this.id = id;
     }
 
-    public void setIdPola(Integer idPola) {
+    public void setIdPola(String idPola) {
         this.idPola = idPola;
     }
 

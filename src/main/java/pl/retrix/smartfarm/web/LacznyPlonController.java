@@ -36,10 +36,9 @@ public class LacznyPlonController {
     public Iterable<LacznyPlon> getAllLacznyPlon(){return lacznyPlonService.findAll();}
 
     @DeleteMapping("/{typUprawy")
-    public ResponseEntity<?> deleteLacznyPlon(@PathVariable Integer typUprawy){
+    public ResponseEntity<?> deleteLacznyPlon(@PathVariable String typUprawy){
         lacznyPlonService.deleteLacznyPlonByNazwa(typUprawy);
 
-        //TODO: napisac iterpretacje typu uprawy na nazwy
         return new ResponseEntity<String>("Wpis typu " + typUprawy + " został usunię†y", HttpStatus.OK);
     }
 

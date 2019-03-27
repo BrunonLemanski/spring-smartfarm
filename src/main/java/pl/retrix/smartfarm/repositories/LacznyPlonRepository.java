@@ -8,7 +8,7 @@ import pl.retrix.smartfarm.domain.LacznyPlon;
 @Repository
 public interface LacznyPlonRepository extends CrudRepository<LacznyPlon, Long> {
 
-    LacznyPlon findByTypUprawy (Integer typUprawy);
+    LacznyPlon findByTypUprawy (String typUprawy);
 
     @Override
     Iterable<LacznyPlon> findAll();

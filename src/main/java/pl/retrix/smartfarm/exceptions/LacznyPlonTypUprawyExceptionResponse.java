@@ -2,17 +2,17 @@ package pl.retrix.smartfarm.exceptions;
 
 public class LacznyPlonTypUprawyExceptionResponse {
 
-    private Integer typUprawy;
+    private String typUprawy;
 
-    public LacznyPlonTypUprawyExceptionResponse(Integer typUprawy) {
+    public LacznyPlonTypUprawyExceptionResponse(String typUprawy) {
         this.typUprawy = typUprawy;
     }
 
-    public Integer getTypUprawy() {
+    public String getTypUprawy() {
         return typUprawy;
     }
 
-    public void setTypUprawy(Integer typUprawy) {
+    public void setTypUprawy(String typUprawy) {
         this.typUprawy = typUprawy;
     }
 }
