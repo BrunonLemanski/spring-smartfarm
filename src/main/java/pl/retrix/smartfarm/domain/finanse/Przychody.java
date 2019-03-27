@@ -2,9 +2,7 @@ package pl.retrix.smartfarm.domain.finanse;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
@@ -12,6 +10,7 @@ import java.util.Date;
 public class Przychody { //TODO: tworzona encja
 
     @Id
+    @Column(name = "przychody_id")
     private Integer id;
 
     @NotBlank(message = "Tytuł jest wymagany")
@@ -24,6 +23,17 @@ public class Przychody { //TODO: tworzona encja
     @JsonFormat(pattern = "dd-mm-yyyy")
     @NotBlank(message = "Data jest wymagana")
     private Date dataDodania;
+
+    // *** ENTITY RELATIONS *** //
+    @ManyToOne
+    @JoinColumn(name = "stan_id", nullable = false)
+    StanKonta stanKonta;
+    // *** ---------------- *** //
+
+
+    // *** ENTITY RELATIONS *** //
+
+    // *** ---------------- *** //
 
     public Przychody() {
     }

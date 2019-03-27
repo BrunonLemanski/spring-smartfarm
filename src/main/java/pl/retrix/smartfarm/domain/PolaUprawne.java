@@ -1,14 +1,30 @@
 package pl.retrix.smartfarm.domain;
 
+import pl.retrix.smartfarm.domain.accounts.User;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 public class PolaUprawne {
 
+    // *** ENTITY RELATIONS *** //
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    User user;
+
+    // ######################## //
+    @OneToMany(mappedBy = "polaUprawne", cascade = CascadeType.ALL)
+    List<Plony> plonyList;
+    // *** ---------------- *** //
+
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "polaUprawne_id")
     private Long id;
 
     @NotBlank(message = "Nazwa pola jest wymagana")

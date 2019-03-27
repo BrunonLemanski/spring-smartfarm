@@ -1,16 +1,23 @@
 package pl.retrix.smartfarm.domain.finanse;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import pl.retrix.smartfarm.domain.accounts.User;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 @Entity
-public class Pozyczki {//TODO: tworzona encja
+public class Pozyczki {
+
+    // *** ENTITY RELATIONS *** //
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    User user;
+    // *** ---------------- *** //
+
+
 
     @Id
     private Integer id;

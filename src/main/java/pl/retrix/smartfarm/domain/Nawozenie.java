@@ -14,9 +14,13 @@ import java.util.Date;
 @Entity
 public class Nawozenie {
 
-    //------- ZALEŻNOŚCI ------//
+    // *** ENTITY RELATIONS *** //
     @ManyToOne
-    private Plony nawozeniePlonyPath;
+    @JoinColumn(name = "plony_id", nullable = false)
+    Plony plony;
+    // *** ---------------- *** //
+
+
 
     //------- ZMIENNE ------//
 

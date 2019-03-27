@@ -3,21 +3,57 @@ package pl.retrix.smartfarm.domain.accounts;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import pl.retrix.smartfarm.domain.*;
+import pl.retrix.smartfarm.domain.finanse.Oszczednosci;
+import pl.retrix.smartfarm.domain.finanse.Pozyczki;
+import pl.retrix.smartfarm.domain.finanse.StanKonta;
+import pl.retrix.smartfarm.domain.finanse.Zobowiazania;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class User implements UserDetails {
 
+    // *** ENTITY RELATIONS *** //
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    List<StanKonta> stanKontaList;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    List<Oszczednosci> oszczednosciList;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    List<Zobowiazania> zobowiazaniaList;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    List<Pozyczki> pozyczkiList;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    List<Inwentarz> inwentarzList;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    List<Mleko> mlekoList;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    List<Magazyn> magazynList;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    List<Maszyny> maszynyList;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    List<PolaUprawne> polaUprawneList;
+    // *** ---------------- *** //
+
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private Long id;
-
-    /*OneToMany  polaczenie innych klas */
 
     @Email(message = "Użytkownik musi posiadać adres email")
     @NotBlank(message = "Imię jest wymagane")

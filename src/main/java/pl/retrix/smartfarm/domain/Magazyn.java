@@ -1,6 +1,7 @@
 package pl.retrix.smartfarm.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import pl.retrix.smartfarm.domain.accounts.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -10,6 +11,13 @@ import java.util.Date;
 
 @Entity
 public class Magazyn {
+
+    // *** ENTITY RELATIONS *** //
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    User user;
+    // *** ---------------- *** //
+
 
     //----------------- ZMIENNE -----------------
     @Id

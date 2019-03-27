@@ -1,5 +1,7 @@
 package pl.retrix.smartfarm.domain.finanse;
 
+import pl.retrix.smartfarm.domain.accounts.User;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.List;
@@ -13,9 +15,21 @@ public class StanKonta {//TODO: tworzona encja
 
     private Double stan; //wyplata + przychody - wydatki
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "stan_id", referencedColumnName = "stan_id")
-    private List<Wydatki> wydatkiList;
+    // *** ENTITY RELATIONS *** //
+    @OneToMany(mappedBy = "stanKonta", cascade = CascadeType.ALL)
+    List<Wydatki> wydatkiList;
+
+    @OneToMany(mappedBy = "stanKonta", cascade = CascadeType.ALL)
+    List<Przychody> przychodyList;
+
+    @OneToMany(mappedBy = "stanKonta", cascade = CascadeType.ALL)
+    List<Wyplaty> wyplatyList;
+
+    // ######################## //
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    User user;
+    // *** ---------------- *** //
 
     public StanKonta() {
     }

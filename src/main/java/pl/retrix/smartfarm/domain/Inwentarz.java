@@ -1,13 +1,28 @@
 package pl.retrix.smartfarm.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import pl.retrix.smartfarm.domain.accounts.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Inwentarz {
+
+    // *** ENTITY RELATIONS *** //
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    User user;
+
+    // ######################## //
+    /*
+    @OneToMany(mappedBy = "inwentarz", cascade = CascadeType.ALL)
+    List<Wycielenia> wycieleniaList;*/
+    // *** ---------------- *** //
+
+
 
     //----------------- ZMIENNE -----------------
     @Id

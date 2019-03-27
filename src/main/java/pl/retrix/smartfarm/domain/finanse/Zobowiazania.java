@@ -1,10 +1,9 @@
 package pl.retrix.smartfarm.domain.finanse;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import pl.retrix.smartfarm.domain.accounts.User;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
@@ -27,6 +26,12 @@ public class Zobowiazania {//TODO: tworzona encja
 
     @JsonFormat(pattern = "dd-mm-yyyy")
     private Date dataSplaty;
+
+    // *** ENTITY RELATIONS *** //
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    User user;
+    // *** ---------------- *** //
 
     public Zobowiazania() {
     }

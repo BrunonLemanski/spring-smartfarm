@@ -16,19 +16,24 @@ import java.util.List;
 @Entity
 public class Plony {
 
-    //TODO: INFO 2. Mapowanie relacji pomiędzy encjami
-    //------- ZALEŻNOŚCI ------//
+    // *** ENTITY RELATIONS *** //
     @ManyToOne
-    private LacznyPlon lacznyPlon;
+    @JoinColumn(name = "polaUprawne_id", nullable = false)
+    PolaUprawne polaUprawne;
 
-    @OneToMany(mappedBy = "nawozeniePlonyPath")
-    private List<Nawozenie> nawozPlon; //TODO: Rozwiązać problem z encjami.
+    @ManyToOne
+    @JoinColumn(name = "lacznyPlon_id", nullable = false)
+    LacznyPlon lacznyPlon;
 
+    // ######################## //
+    @OneToMany(mappedBy = "plony", cascade = CascadeType.ALL)
+    List<Nawozenie> nawozenieList;
+    // *** ---------------- *** //
     //------- ZMIENNE ------//
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(updatable = false, unique = true)
+    @Column(name = "plony_id")
     private Long id;
 
     @NotNull(message = "Podaj nazwę/kod dla uprawy")

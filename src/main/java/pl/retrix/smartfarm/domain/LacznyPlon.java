@@ -7,14 +7,16 @@ import java.util.List;
 @Entity
 public class LacznyPlon {
 
-    //------- ZALEŻNOŚCI ------//
-    @OneToMany(mappedBy = "lacznyPlon")
-    private List<Plony> plonyRazem;
+    // *** ENTITY RELATIONS *** //
+    @OneToMany(mappedBy = "lacznyPlon", cascade = CascadeType.ALL)
+    List<Plony> plonyList;
+    // *** ---------------- *** //
 
     //------- ZMIENNE ------//
 
     @Id
     @GeneratedValue
+    @Column(name = "lacznyPlon_id")
     private Integer id;
 
     @NotNull
